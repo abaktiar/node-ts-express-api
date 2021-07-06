@@ -7,14 +7,14 @@ var fs = require("fs");
 const SwaggerParser = require("swagger-parser");
 
 function buildSwagger() {
-  var root = YAML.safeLoad(
+  var root = YAML.load(
     fs.readFileSync("swagger/src/index.yaml", "utf8")
   );
   var options = {
     filter: ["relative", "remote"],
     loaderOptions: {
       processContent: function(res, callback) {
-        callback(null, YAML.safeLoad(res.text));
+        callback(null, YAML.load(res.text));
       }
     }
   };
